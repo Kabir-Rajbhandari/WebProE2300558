@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db->close();
 
         setFlash('success', 'Payment successful! Your enrolment receipt is ready.');
-        redirect(APP_URL . '/receipt.php?enroll=' . $enrollId);
+        redirect(APP_URL . '/pages/receipt.php?enroll=' . $enrollId);
     }
 }
 
@@ -117,7 +117,7 @@ include '../includes/header.php';
             </div>
             <?php endif; ?>
 
-            <form id="paymentForm" method="POST" action="payment.php" class="form-ems" novalidate>
+            <form id="paymentForm" method="POST" action="<?= APP_URL ?>/pages/payment.php" class="form-ems" novalidate>
               <div class="form-group">
                 <label for="cardName">
                   <i class="fas fa-user me-1" style="color:var(--primary);margin-right:4px;"></i>Cardholder Name *
