@@ -1,10 +1,10 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireLogin();
 
 if (!in_array($_SESSION['user_role'], ['provider', 'officer'])) {
-    redirect(APP_URL . '/error.php?code=403');
+    redirect(APP_URL . '/pages/error.php?code=403');
 }
 
 $role     = $_SESSION['user_role'];
@@ -18,7 +18,7 @@ if ($role === 'provider') {
     $ps->bind_param('i', $userId);
     $ps->execute();
     $prov = $ps->get_result()->fetch_assoc();
-    if (!$prov) redirect(APP_URL . '/provider-dashboard.php');
+    if (!$prov) redirect(APP_URL . '/pages/provider-dashboard.php');
     $provId  = $prov['providerID'];
     $scopeName = $prov['org_name'];
 } else {
@@ -145,14 +145,14 @@ $db->close();
 
 $pageTitle = 'Analytics';
 $activeNav = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between flex-wrap" style="gap:12px;margin-bottom:16px;">
-      <a href="<?= $role==='officer'?'officer-dashboard.php':'provider-dashboard.php' ?>" 
+      <a href="<?= APP_URL ?>/pages/<?= $role==='officer'?'officer-dashboard.php':'provider-dashboard.php' ?>" 
          class="btn-outline-ems" style="padding:10px 20px;display:inline-flex;align-items:center;gap:8px;">
         <i class="fas fa-arrow-left"></i> Back to Dashboard
       </a>
@@ -308,7 +308,7 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
 
 <script>
 (function() {

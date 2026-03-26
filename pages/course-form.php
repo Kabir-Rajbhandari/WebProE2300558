@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('provider');
 
 $userId = $_SESSION['user_id'];
@@ -11,7 +11,7 @@ $ps = $db->prepare("SELECT * FROM providers WHERE userID=? AND status='approved'
 $ps->bind_param('i', $userId);
 $ps->execute();
 $provider = $ps->get_result()->fetch_assoc();
-if (!$provider) redirect(APP_URL . '/provider-dashboard.php');
+if (!$provider) redirect(APP_URL . '/pages/provider-dashboard.php');
 $provId = $provider['providerID'];
 
 // Edit mode?
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($file['size'] > $maxSize) {
             $errors[] = 'Course image must be smaller than 5MB.';
         } elseif ($file['error'] === UPLOAD_ERR_OK) {
-            $uploadsDir = __DIR__ . '/uploads/courses/';
+            $uploadsDir = __DIR__ . '/../uploads/courses/';
             if (!is_dir($uploadsDir)) {
                 mkdir($uploadsDir, 0755, true);
             }
@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (move_uploaded_file($file['tmp_name'], $filePath)) {
                 // Delete old image if updating
-                if ($editId && $imagePath && file_exists(__DIR__ . '/' . $imagePath)) {
-                    unlink(__DIR__ . '/' . $imagePath);
+                if ($editId && $imagePath && file_exists(__DIR__ . '/../' . $imagePath)) {
+                    unlink(__DIR__ . '/../' . $imagePath);
                 }
                 $imagePath = 'uploads/courses/' . $fileName;
             } else {
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlash('success', 'Course published successfully!');
         }
         $db->close();
-        redirect(APP_URL . '/provider-dashboard.php');
+        redirect(APP_URL . '/pages/provider-dashboard.php');
     }
 }
 
@@ -100,14 +100,14 @@ $db->close();
 
 $pageTitle = $isEdit ? 'Edit Course' : 'Add New Course';
 $activeNav = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="provider-dashboard.php">Dashboard</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/provider-dashboard.php">Dashboard</a><span>/</span>
       <span style="color:var(--text);"><?= $isEdit ? 'Edit Course' : 'Add Course' ?></span>
     </div>
     <h1><?= $isEdit ? 'Edit Course' : 'Add New Course' ?></h1>
@@ -161,7 +161,7 @@ include 'includes/header.php';
                        style="display:none;" <?= !$isEdit ? 'required' : '' ?> />
                 <div id="imagePreviewArea">
                   <?php if ($isEdit && !empty($course['image_path'])): ?>
-                  <img src="<?= htmlspecialchars($course['image_path']) ?>" alt="Course" style="max-height:150px;margin-bottom:12px;" />
+                  <img src="<?= APP_URL . '/' . htmlspecialchars($course['image_path']) ?>" alt="Course" style="max-height:150px;margin-bottom:12px;" />
                   <p style="font-size:.85rem;color:var(--text-muted);margin:0;">
                     <i class="fas fa-check-circle" style="color:var(--success);"></i> Current image
                   </p>
@@ -283,7 +283,7 @@ include 'includes/header.php';
             </div>
 
             <div class="d-flex" style="gap:12px;">
-              <a href="provider-dashboard.php" class="btn-outline-ems" style="padding:11px 22px;">
+              <a href="<?= APP_URL ?>/pages/provider-dashboard.php" class="btn-outline-ems" style="padding:11px 22px;">
                 <i class="fas fa-times"></i> Cancel
               </a>
               <button type="submit" class="btn-accent-ems flex-fill" style="justify-content:center;padding:12px;font-size:1rem;">

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 $pageTitle = 'Browse Courses';
 $activeNav = 'courses';
@@ -68,7 +68,7 @@ $categories = $db->query("SELECT DISTINCT category FROM courses WHERE category I
 $categories = array_column($categories, 'category');
 
 $db->close();
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -151,7 +151,7 @@ include 'includes/header.php';
         <?= $search ? ' for <strong>"'.htmlspecialchars($search).'"</strong>' : '' ?>
       </p>
       <?php if ($search || $category): ?>
-      <a href="courses.php" style="font-size:.85rem;color:var(--danger);">
+      <a href="<?= APP_URL ?>/pages/courses.php" style="font-size:.85rem;color:var(--danger);">
         <i class="fas fa-times me-1" style="margin-right:4px;"></i>Clear filters
       </a>
       <?php endif; ?>
@@ -168,7 +168,7 @@ include 'includes/header.php';
           <p style="color:var(--text-muted);margin-bottom:20px;">
             Try adjusting your search or filter criteria.
           </p>
-          <a href="courses.php" class="btn-outline-ems">Clear All Filters</a>
+          <a href="<?= APP_URL ?>/pages/courses.php" class="btn-outline-ems">Clear All Filters</a>
         </div>
       </div>
       <?php else: ?>
@@ -182,7 +182,7 @@ include 'includes/header.php';
           <!-- Thumbnail -->
           <div class="course-thumb">
             <?php if (!empty($course['image_path'])): ?>
-            <img src="<?= htmlspecialchars($course['image_path']) ?>" alt="<?= htmlspecialchars($course['title']) ?>" 
+            <img src="<?= APP_URL . '/' . htmlspecialchars($course['image_path']) ?>" alt="<?= htmlspecialchars($course['title']) ?>" 
                  style="width:100%;height:100%;object-fit:cover;position:absolute;z-index:0;" />
             <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,0.3),rgba(168,85,247,0.3));z-index:1;"></div>
             <?php else: ?>
@@ -208,7 +208,7 @@ include 'includes/header.php';
               <?= htmlspecialchars($course['org_name']) ?>
             </div>
             <h3 class="course-title">
-              <a href="course-detail.php?id=<?= $course['courseID'] ?>" style="color:var(--text);">
+              <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $course['courseID'] ?>" style="color:var(--text);">
                 <?= htmlspecialchars($course['title']) ?>
               </a>
             </h3>
@@ -239,7 +239,7 @@ include 'includes/header.php';
                 <div style="font-weight:800;color:var(--primary);font-size:1.05rem;">
                   <?= $course['fee']>0 ? 'RM '.number_format($course['fee'],2) : '<span style="color:var(--success);">Free</span>' ?>
                 </div>
-                <a href="course-detail.php?id=<?= $course['courseID'] ?>"
+                <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $course['courseID'] ?>"
                    class="btn-primary-ems mt-2" style="padding:6px 14px;font-size:.78rem;">
                   View <i class="fas fa-arrow-right"></i>
                 </a>
@@ -255,4 +255,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -1,9 +1,9 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 $pageTitle = 'Contact Us';
 $activeNav = 'contact';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -150,4 +150,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('learner');
 
 $enrollId = (int)($_GET['enroll'] ?? 0);
@@ -31,7 +31,7 @@ if (!$receipt) {
 $receiptNumber = generateReceiptNumber($enrollId);
 $pageTitle     = 'Receipt ' . $receiptNumber;
 $activeNav     = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -42,7 +42,7 @@ include 'includes/header.php';
     <!-- Action Buttons -->
     <div class="d-flex align-items-center justify-content-between mb-4 no-print" data-aos="fade-down">
       <div>
-        <a href="learner-dashboard.php" class="btn-outline-ems" style="padding:9px 18px;">
+        <a href="<?= APP_URL ?>/pages/learner-dashboard.php" class="btn-outline-ems" style="padding:9px 18px;">
           <i class="fas fa-arrow-left"></i> Dashboard
         </a>
       </div>
@@ -190,7 +190,7 @@ include 'includes/header.php';
       <i class="fas fa-star"></i>
       <div>
         <strong>Enjoying the course?</strong> Share your experience and help other learners.
-        <a href="review.php?course=<?= $receipt['courseID'] ?>" style="font-weight:700;color:var(--primary);margin-left:8px;">
+        <a href="<?= APP_URL ?>/pages/review.php?course=<?= $receipt['courseID'] ?>" style="font-weight:700;color:var(--primary);margin-left:8px;">
           Leave a Review <i class="fas fa-arrow-right" style="font-size:.8rem;margin-left:4px;"></i>
         </a>
       </div>
@@ -200,4 +200,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

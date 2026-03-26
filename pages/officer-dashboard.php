@@ -1,7 +1,7 @@
 <?php
 // ---> Officer dashboard for managing provider approvals and system analytics
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('officer');
 
 $pageTitle = 'Officer Dashboard';
@@ -105,7 +105,7 @@ $recent_enrollments = $db->query("
 ")->fetch_all(MYSQLI_ASSOC);
 
 $db->close();
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -151,7 +151,7 @@ include 'includes/header.php';
       </div>
       <div class="sidebar-section-title">System</div>
       <div class="nav-item">
-        <a href="php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
+        <a href="<?= APP_URL ?>/php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
           <i class="fas fa-sign-out-alt" style="width:18px;margin-right:8px;"></i>Logout
         </a>
       </div>
@@ -406,7 +406,7 @@ include 'includes/header.php';
           <h4 style="font-size:1rem;font-weight:700;margin:0;">
             <i class="fas fa-building me-2" style="color:var(--primary);margin-right:8px;"></i>Provider Performance
           </h4>
-          <a href="analytics.php" class="btn-outline-ems" style="padding:7px 14px;font-size:.82rem;" target="_blank">
+          <a href="<?= APP_URL ?>/pages/analytics.php" class="btn-outline-ems" style="padding:7px 14px;font-size:.82rem;" target="_blank">
             <i class="fas fa-chart-bar me-1" style="margin-right:4px;"></i>Full Analytics
           </a>
         </div>

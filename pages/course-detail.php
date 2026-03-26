@@ -1,10 +1,10 @@
 <?php
 
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 $courseId = (int)($_GET['id'] ?? 0);
-if (!$courseId) redirect(APP_URL . '/courses.php');
+if (!$courseId) redirect(APP_URL . '/pages/courses.php');
 
 $db = getDbConnection();
 
@@ -25,14 +25,14 @@ $stmt->bind_param('i', $courseId);
 $stmt->execute();
 $course = $stmt->get_result()->fetch_assoc();
 if (!$course) {
-    redirect(APP_URL . '/error.php?code=404');
+    redirect(APP_URL . '/pages/error.php?code=404');
 }
 
 // Block access to inactive courses for non-providers/non-officers
 $userRole = $_SESSION['user_role'] ?? '';
 if ($course['status'] === 'inactive' && !in_array($userRole, ['provider','officer'])) {
     setFlash('warning', 'This course is currently unavailable.');
-    redirect(APP_URL . '/courses.php');
+    redirect(APP_URL . '/pages/courses.php');
 }
 
 // Update view count in analytics
@@ -71,14 +71,14 @@ $db->close();
 
 $pageTitle = htmlspecialchars($course['title']);
 $activeNav = 'courses';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <!-- Course Image Banner -->
 <?php if (!empty($course['image_path'])): ?>
 <div style="width:100%;height:300px;background:linear-gradient(135deg,rgba(99,102,241,0.5),rgba(168,85,247,0.5)),
-            url('<?= htmlspecialchars($course['image_path']) ?>');
+            url('<?= APP_URL . '/' . htmlspecialchars($course['image_path']) ?>');
             background-size:cover;background-position:center;position:relative;">
 </div>
 <?php endif; ?>
@@ -87,8 +87,8 @@ include 'includes/header.php';
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="index.php">Home</a><span>/</span>
-      <a href="courses.php">Courses</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/index.php">Home</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/courses.php">Courses</a><span>/</span>
       <span style="color:var(--text);"><?= htmlspecialchars(substr($course['title'],0,40)) ?>...</span>
     </div>
     <span class="badge-category mb-2 d-inline-block"><?= htmlspecialchars($course['category'] ?? 'General') ?></span>
@@ -226,13 +226,13 @@ include 'includes/header.php';
               <?php endif; ?>
 
               <?php if (empty($_SESSION['user_id'])): ?>
-              <a href="login.php?redirect=course-detail.php?id=<?= $courseId ?>"
+              <a href="<?= APP_URL ?>/pages/login.php?redirect=<?= urlencode(APP_URL . '/pages/course-detail.php?id=' . $courseId) ?>"
                  class="btn-primary-ems w-100" style="padding:13px;justify-content:center;font-size:1rem;">
                 <i class="fas fa-sign-in-alt"></i> Login to Enrol
               </a>
               <?php elseif ($_SESSION['user_role'] === 'learner' && !$isEnrolled): ?>
                 <?php if ((int)$course['available_seats'] > 0): ?>
-                <a href="enrollment.php?course=<?= $courseId ?>"
+                <a href="<?= APP_URL ?>/pages/enrollment.php?course=<?= $courseId ?>"
                    class="btn-primary-ems w-100" style="padding:13px;justify-content:center;font-size:1rem;">
                   <i class="fas fa-graduation-cap"></i> Enrol Now
                 </a>
@@ -293,4 +293,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

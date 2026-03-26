@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('learner');
 
 $courseId = (int)($_GET['course'] ?? 0);
@@ -57,14 +57,14 @@ $db->close();
 
 $pageTitle = 'Review: ' . htmlspecialchars($course['title']);
 $activeNav = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="learner-dashboard.php">Dashboard</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/learner-dashboard.php">Dashboard</a><span>/</span>
       <span style="color:var(--text);">Submit Review</span>
     </div>
     <h1>Rate &amp; Review Course</h1>
@@ -139,7 +139,7 @@ include 'includes/header.php';
             </div>
 
             <div class="d-flex" style="gap:12px;">
-              <a href="learner-dashboard.php" class="btn-outline-ems" style="padding:11px 22px;">
+              <a href="<?= APP_URL ?>/pages/learner-dashboard.php" class="btn-outline-ems" style="padding:11px 22px;">
                 <i class="fas fa-times"></i> Cancel
               </a>
               <button type="submit" class="btn-accent-ems flex-fill" style="justify-content:center;padding:12px;font-size:1rem;">
@@ -192,4 +192,4 @@ $('#reviewFeedback').on('input', function(){
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

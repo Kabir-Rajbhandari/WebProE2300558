@@ -1,7 +1,7 @@
 <?php
 // ---> User registration form for learners and training providers
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 if (!empty($_SESSION['user_id'])) {
     redirect(APP_URL . '/index.php');
@@ -107,11 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlash('success', 'Account created successfully! Please log in.');
         }
-        redirect(APP_URL . '/login.php');
+        redirect(APP_URL . '/pages/login.php');
     }
 }
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -269,7 +269,7 @@ include 'includes/header.php';
           <div class="divider-ems" style="margin:20px 0 16px;">or</div>
           <div class="text-center" style="font-size:.9rem;color:var(--text-muted);">
             Already have an account?
-            <a href="login.php" style="font-weight:700;color:var(--primary);">Login</a>
+            <a href="<?= APP_URL ?>/pages/login.php" style="font-weight:700;color:var(--primary);">Login</a>
           </div>
         </div>
       </div>
@@ -278,4 +278,4 @@ include 'includes/header.php';
 </div>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 // ---> Provider dashboard for creating and managing courses with analytics
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('provider');
 
 $pageTitle = 'Provider Dashboard';
@@ -83,7 +83,7 @@ $monthly_labels = array_column($monthly_data, 'month_label');
 $monthly_counts = array_column($monthly_data, 'count');
 
 $db->close();
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -125,12 +125,12 @@ include 'includes/header.php';
 
       <div class="sidebar-section-title">Actions</div>
       <div class="nav-item">
-        <a href="course-form.php" class="nav-link" style="color:rgba(168,85,247,.9) !important;">
+        <a href="<?= APP_URL ?>/pages/course-form.php" class="nav-link" style="color:rgba(168,85,247,.9) !important;">
           <i class="fas fa-plus-circle" style="width:18px;margin-right:8px;"></i>Add New Course
         </a>
       </div>
       <div class="nav-item">
-        <a href="php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
+        <a href="<?= APP_URL ?>/php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
           <i class="fas fa-sign-out-alt" style="width:18px;margin-right:8px;"></i>Logout
         </a>
       </div>
@@ -152,7 +152,7 @@ include 'includes/header.php';
             Provider Dashboard &mdash; <?= date('d F Y') ?>
           </p>
         </div>
-        <a href="course-form.php" class="btn-accent-ems d-none d-md-flex">
+        <a href="<?= APP_URL ?>/pages/course-form.php" class="btn-accent-ems d-none d-md-flex">
           <i class="fas fa-plus"></i> Add Course
         </a>
       </div>
@@ -196,7 +196,7 @@ include 'includes/header.php';
         <?php if (empty($courses)): ?>
         <div class="text-center py-4">
           <p style="color:var(--text-muted);margin-bottom:14px;">No courses yet. Add your first course!</p>
-          <a href="course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add Course</a>
+          <a href="<?= APP_URL ?>/pages/course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add Course</a>
         </div>
         <?php else: ?>
         <div class="table-responsive-ems">
@@ -218,7 +218,7 @@ include 'includes/header.php';
                 <td><?= $c['enroll_count'] ?></td>
                 <td>
                   <div style="display:flex;gap:6px;">
-                    <a href="course-form.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">Edit</a>
+                    <a href="<?= APP_URL ?>/pages/course-form.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">Edit</a>
                     <button onclick="confirmDeleteCourse(<?= $c['courseID'] ?>,'<?= htmlspecialchars(addslashes($c['title'])) ?>')"
                             class="btn-primary-ems" style="padding:4px 10px;font-size:.78rem;background:var(--danger);">Delete</button>
                   </div>
@@ -236,13 +236,13 @@ include 'includes/header.php';
     <section id="section-courses" style="display:none;">
       <div class="d-flex align-items-center justify-content-between mb-4">
         <h2 style="font-size:1.4rem;margin:0;"><i class="fas fa-book me-2" style="color:var(--accent);margin-right:8px;"></i>My Courses</h2>
-        <a href="course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add New Course</a>
+        <a href="<?= APP_URL ?>/pages/course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add New Course</a>
       </div>
       <?php if (empty($courses)): ?>
       <div class="text-center py-5" style="background:white;border-radius:var(--radius);border:1px solid var(--border);">
         <i class="fas fa-book" style="font-size:3rem;color:var(--border);display:block;margin-bottom:14px;"></i>
         <p style="color:var(--text-muted);margin-bottom:16px;">No courses added yet.</p>
-        <a href="course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add First Course</a>
+        <a href="<?= APP_URL ?>/pages/course-form.php" class="btn-accent-ems"><i class="fas fa-plus"></i> Add First Course</a>
       </div>
       <?php else: ?>
       <div class="table-responsive-ems">
@@ -287,10 +287,10 @@ include 'includes/header.php';
               <td><span style="font-weight:700;color:var(--primary);"><?= $c['enroll_count'] ?></span></td>
               <td>
                 <div style="display:flex;gap:6px;">
-                  <a href="course-detail.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:5px 10px;font-size:.78rem;" title="View">
+                  <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:5px 10px;font-size:.78rem;" title="View">
                     <i class="fas fa-eye"></i>
                   </a>
-                  <a href="course-form.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:5px 10px;font-size:.78rem;" title="Edit">
+                  <a href="<?= APP_URL ?>/pages/course-form.php?id=<?= $c['courseID'] ?>" class="btn-outline-ems" style="padding:5px 10px;font-size:.78rem;" title="Edit">
                     <i class="fas fa-edit"></i>
                   </a>
                   <button onclick="confirmDeleteCourse(<?= $c['courseID'] ?>,'<?= htmlspecialchars(addslashes($c['title'])) ?>')"
@@ -336,7 +336,7 @@ include 'includes/header.php';
         <h2 style="font-size:1.4rem;margin:0;">
           <i class="fas fa-file-alt me-2" style="color:var(--primary);margin-right:8px;"></i>Enrollment Reports
         </h2>
-        <a href="analytics.php?provider=<?= $provider_id ?>" class="btn-primary-ems" target="_blank">
+        <a href="<?= APP_URL ?>/pages/analytics.php?provider=<?= $provider_id ?>" class="btn-primary-ems" target="_blank">
           <i class="fas fa-external-link-alt"></i> Full Analytics Page
         </a>
       </div>

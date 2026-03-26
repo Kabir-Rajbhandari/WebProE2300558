@@ -1,9 +1,9 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 $pageTitle = 'FAQ';
 $activeNav = 'faq';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -146,7 +146,7 @@ include 'includes/header.php';
         'icon' => 'fa-headset',
         'color'=> 'orange',
         'q'    => 'How do I contact technical support?',
-        'a'    => 'Email us at <a href="mailto:support@eduskill.gov.my" style="color:var(--primary);">support@eduskill.gov.my</a> or use the <a href="' . APP_URL . '/contact.php" style="color:var(--primary);">Contact Us</a> form. Our technical team responds within 1–2 business days, Monday to Friday 8:00 AM – 5:00 PM.'
+        'a'    => 'Email us at <a href="mailto:support@eduskill.gov.my" style="color:var(--primary);">support@eduskill.gov.my</a> or use the <a href="' . APP_URL . '/pages/contact.php" style="color:var(--primary);">Contact Us</a> form. Our technical team responds within 1–2 business days, Monday to Friday 8:00 AM – 5:00 PM.'
       ],
     ];
 
@@ -243,7 +243,7 @@ include 'includes/header.php';
           </div>
 
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <a href="<?= APP_URL ?>/contact.php" class="btn-primary-ems"
+            <a href="<?= APP_URL ?>/pages/contact.php" class="btn-primary-ems"
                style="display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;font-size:.95rem;text-decoration:none;">
               <i class="fas fa-paper-plane"></i> Send Us a Message
             </a>
@@ -279,7 +279,7 @@ include 'includes/header.php';
 
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
 
 <style>
 /* ---- FAQ Category Buttons ---- */

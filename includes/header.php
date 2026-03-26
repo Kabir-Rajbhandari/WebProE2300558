@@ -46,7 +46,7 @@ $userName   = getSessionUserName();
 <nav class="navbar navbar-ems navbar-expand-lg">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center" href="<?= APP_URL ?>/index.php">
+    <a class="navbar-brand d-flex align-items-center" href="<?= APP_URL ?>/pages/index.php">
   <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
        style="height:80px; width:auto; object-fit:contain;">
 </a>
@@ -62,31 +62,31 @@ $userName   = getSessionUserName();
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
           <a class="nav-link <?= $activeNav === 'home' ? 'active' : '' ?>"
-             href="<?= APP_URL ?>/index.php">
+             href="<?= APP_URL ?>/pages/index.php">
             Home
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?= $activeNav === 'courses' ? 'active' : '' ?>"
-             href="<?= APP_URL ?>/courses.php">
+             href="<?= APP_URL ?>/pages/courses.php">
             Courses
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?= $activeNav === 'about' ? 'active' : '' ?>"
-             href="<?= APP_URL ?>/about.php">
+             href="<?= APP_URL ?>/pages/about.php">
             About
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?= $activeNav === 'contact' ? 'active' : '' ?>"
-             href="<?= APP_URL ?>/contact.php">
+             href="<?= APP_URL ?>/pages/contact.php">
             Contact
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?= $activeNav === 'faq' ? 'active' : '' ?>"
-             href="<?= APP_URL ?>/faq.php">
+             href="<?= APP_URL ?>/pages/faq.php">
             FAQ
           </a>
         </li>
@@ -104,15 +104,15 @@ $userName   = getSessionUserName();
             <div class="dropdown-menu dropdown-menu-right"
                  style="border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);min-width:180px;padding:8px;">
               <?php if ($userRole === 'learner'): ?>
-                <a class="dropdown-item" href="<?= APP_URL ?>/learner-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
+                <a class="dropdown-item" href="<?= APP_URL ?>/pages/learner-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
                   Dashboard
                 </a>
               <?php elseif ($userRole === 'provider'): ?>
-                <a class="dropdown-item" href="<?= APP_URL ?>/provider-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
+                <a class="dropdown-item" href="<?= APP_URL ?>/pages/provider-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
                   Dashboard
                 </a>
               <?php elseif ($userRole === 'officer'): ?>
-                <a class="dropdown-item" href="<?= APP_URL ?>/officer-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
+                <a class="dropdown-item" href="<?= APP_URL ?>/pages/officer-dashboard.php" style="border-radius:6px;padding:8px 14px;font-size:.9rem;">
                   Dashboard
                 </a>
               <?php endif; ?>
@@ -123,10 +123,10 @@ $userName   = getSessionUserName();
             </div>
           </div>
         <?php else: ?>
-          <a href="<?= APP_URL ?>/login.php" class="btn-outline-ems">
+          <a href="<?= APP_URL ?>/pages/login.php" class="btn-outline-ems">
             Login
           </a>
-          <a href="<?= APP_URL ?>/signup.php" class="btn-primary-ems">
+          <a href="<?= APP_URL ?>/pages/signup.php" class="btn-primary-ems">
             Sign Up
           </a>
         <?php endif; ?>

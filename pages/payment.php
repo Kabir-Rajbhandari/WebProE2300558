@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('learner');
 
 // Ensure enrollment session data exists
@@ -69,16 +69,16 @@ $db->close();
 
 $pageTitle = 'Payment';
 $activeNav = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="index.php">Home</a><span>/</span>
-      <a href="courses.php">Courses</a><span>/</span>
-      <a href="enrollment.php?course=<?= $courseId ?>">Enrolment</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/index.php">Home</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/courses.php">Courses</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/enrollment.php?course=<?= $courseId ?>">Enrolment</a><span>/</span>
       <span style="color:var(--text);">Payment</span>
     </div>
     <h1>Secure Payment</h1>
@@ -165,7 +165,7 @@ include 'includes/header.php';
 
 
               <div style="display:flex;gap:12px;">
-                <a href="enrollment.php?course=<?= $courseId ?>" class="btn-outline-ems" style="padding:11px 20px;">
+                <a href="<?= APP_URL ?>/pages/enrollment.php?course=<?= $courseId ?>" class="btn-outline-ems" style="padding:11px 20px;">
                   <i class="fas fa-arrow-left"></i> Back
                 </a>
                 <button type="submit" class="btn-primary-ems flex-fill" style="justify-content:center;padding:12px;font-size:1rem;">
@@ -224,4 +224,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

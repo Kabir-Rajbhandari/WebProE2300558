@@ -18,5 +18,5 @@ if (isset($_COOKIE['ems_user'])) {
     setcookie('ems_user', '', time() - 3600, '/', '', false, true);
 }
 
-header('Location: ' . APP_URL . '/login.php');
+header('Location: ' . APP_URL . '/pages/login.php');
 exit;

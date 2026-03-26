@@ -1,10 +1,10 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('learner');
 
 $courseId = (int)($_GET['course'] ?? 0);
-if (!$courseId) redirect(APP_URL . '/courses.php');
+if (!$courseId) redirect(APP_URL . '/pages/courses.php');
 
 $db = getDbConnection();
 
@@ -17,12 +17,12 @@ $stmt = $db->prepare("
 $stmt->bind_param('i', $courseId);
 $stmt->execute();
 $course = $stmt->get_result()->fetch_assoc();
-if (!$course) redirect(APP_URL . '/courses.php');
+if (!$course) redirect(APP_URL . '/pages/courses.php');
 
 // Check course is not full
 if ($course['available_seats'] <= 0) {
     setFlash('warning', 'Sorry, this course is fully booked. No seats are available.');
-    redirect(APP_URL . '/course-detail.php?id=' . $courseId);
+    redirect(APP_URL . '/pages/course-detail.php?id=' . $courseId);
 }
 
 // Check already enrolled
@@ -31,7 +31,7 @@ $chk->bind_param('ii', $_SESSION['user_id'], $courseId);
 $chk->execute();
 if ($chk->get_result()->num_rows > 0) {
     setFlash('info', 'You are already enrolled in this course.');
-    redirect(APP_URL . '/learner-dashboard.php');
+    redirect(APP_URL . '/pages/learner-dashboard.php');
 }
 
 // Get learner info prefill
@@ -63,22 +63,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'phone'      => $phone,
             'employer'   => $employer,
         ];
-        redirect(APP_URL . '/payment.php');
+        redirect(APP_URL . '/pages/payment.php');
     }
 }
 
 $pageTitle = 'Enrol: ' . htmlspecialchars($course['title']);
 $activeNav = 'courses';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="index.php">Home</a><span>/</span>
-      <a href="courses.php">Courses</a><span>/</span>
-      <a href="course-detail.php?id=<?= $courseId ?>">Course</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/index.php">Home</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/courses.php">Courses</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $courseId ?>">Course</a><span>/</span>
       <span style="color:var(--text);">Enrol</span>
     </div>
     <h1>Enrolment Form</h1>
@@ -177,7 +177,7 @@ include 'includes/header.php';
             </div>
 
             <div class="d-flex" style="gap:12px;">
-              <a href="course-detail.php?id=<?= $courseId ?>" class="btn-outline-ems" style="padding:11px 22px;">
+              <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $courseId ?>" class="btn-outline-ems" style="padding:11px 22px;">
                 <i class="fas fa-arrow-left"></i> Back
               </a>
               <button type="submit" class="btn-primary-ems flex-fill" style="justify-content:center;padding:12px;">
@@ -227,4 +227,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

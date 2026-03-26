@@ -1,13 +1,13 @@
 <?php
 // ---> User login form for all roles (learner, provider, officer)
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 // ---> Redirect logged-in users to their dashboard
 if (!empty($_SESSION['user_id'])) {
     $role = $_SESSION['user_role'];
-    $dashMap = ['learner'=>'learner-dashboard.php','provider'=>'provider-dashboard.php','officer'=>'officer-dashboard.php'];
-    redirect(APP_URL . '/' . ($dashMap[$role] ?? 'index.php'));
+    $dashMap = ['learner'=>'/pages/learner-dashboard.php','provider'=>'/pages/provider-dashboard.php','officer'=>'/pages/officer-dashboard.php'];
+    redirect(APP_URL . ($dashMap[$role] ?? '/pages/index.php'));
 }
 
 $pageTitle = 'Login';
@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_email'] = $user['email'];
 
                 setFlash('success', 'Welcome back, ' . $user['name'] . '!');
-                $dashMap = ['learner'=>'learner-dashboard.php','provider'=>'provider-dashboard.php','officer'=>'officer-dashboard.php'];
-                $redirect = $_GET['redirect'] ?? ($dashMap[$user['role']] ?? 'index.php');
-                redirect(APP_URL . '/' . $redirect);
+                $dashMap = ['learner'=>'/pages/learner-dashboard.php','provider'=>'/pages/provider-dashboard.php','officer'=>'/pages/officer-dashboard.php'];
+                $redirect = $_GET['redirect'] ?? ($dashMap[$user['role']] ?? '/pages/index.php');
+                redirect(APP_URL . $redirect);
             } else {
                 $error = 'Officer account not found. Contact administrator.';
             }
@@ -78,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_email'] = $user['email'];
 
                     setFlash('success', 'Welcome back, ' . $user['name'] . '!');
-                    $dashMap = ['learner'=>'learner-dashboard.php','provider'=>'provider-dashboard.php','officer'=>'officer-dashboard.php'];
-                    $redirect = $_GET['redirect'] ?? ($dashMap[$user['role']] ?? 'index.php');
-                    redirect(APP_URL . '/' . $redirect);
+                    $dashMap = ['learner'=>'/pages/learner-dashboard.php','provider'=>'/pages/provider-dashboard.php','officer'=>'/pages/officer-dashboard.php'];
+                    $redirect = $_GET['redirect'] ?? ($dashMap[$user['role']] ?? '/pages/index.php');
+                    redirect(APP_URL . $redirect);
                 }
             } else {
                 $error = 'Invalid email or password. Please try again.';
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -118,7 +118,7 @@ include 'includes/header.php';
             </ul>
             <p style="margin-top:28px;font-size:.82rem;opacity:.6;text-align:center;">
               Don't have an account?<br>
-              <a href="signup.php" style="color:white;font-weight:700;text-decoration:underline;">Sign up free</a>
+              <a href="<?= APP_URL ?>/pages/signup.php" style="color:white;font-weight:700;text-decoration:underline;">Sign up free</a>
             </p>
           </div>
 
@@ -182,7 +182,7 @@ include 'includes/header.php';
 
               <div class="text-center" style="font-size:.9rem;color:var(--text-muted);">
                 New to EduSkill?
-                <a href="signup.php" style="font-weight:700;color:var(--primary);">Create an account</a>
+                <a href="<?= APP_URL ?>/pages/signup.php" style="font-weight:700;color:var(--primary);">Create an account</a>
               </div>
             </div>
           </div>
@@ -193,4 +193,4 @@ include 'includes/header.php';
 </div>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

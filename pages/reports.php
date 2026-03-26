@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('officer');
 
 $db = getDbConnection();
@@ -49,14 +49,14 @@ $db->close();
 
 $pageTitle = 'Reports';
 $activeNav = '';
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
 <div class="page-header">
   <div class="container">
     <div class="breadcrumb-ems">
-      <a href="officer-dashboard.php">Dashboard</a><span>/</span>
+      <a href="<?= APP_URL ?>/pages/officer-dashboard.php">Dashboard</a><span>/</span>
       <span style="color:var(--text);">Reports</span>
     </div>
     <div class="d-flex align-items-center justify-content-between flex-wrap" style="gap:12px;">
@@ -110,7 +110,7 @@ include 'includes/header.php';
         <h4 style="font-size:1rem;font-weight:700;margin:0;">
           <i class="fas fa-building me-2" style="color:var(--primary);margin-right:8px;"></i>Provider Performance Report
         </h4>
-        <a href="analytics.php" class="btn-outline-ems" style="padding:7px 14px;font-size:.82rem;">
+        <a href="<?= APP_URL ?>/pages/analytics.php" class="btn-outline-ems" style="padding:7px 14px;font-size:.82rem;">
           <i class="fas fa-chart-bar me-1" style="margin-right:4px;"></i>View Charts
         </a>
       </div>
@@ -153,7 +153,7 @@ include 'includes/header.php';
                 </span>
               </td>
               <td>
-                <a href="analytics.php?provider=<?= $prov['providerID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">
+                <a href="<?= APP_URL ?>/pages/analytics.php?provider=<?= $prov['providerID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">
                   <i class="fas fa-chart-bar"></i>
                 </a>
               </td>
@@ -203,4 +203,4 @@ include 'includes/header.php';
 </section>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

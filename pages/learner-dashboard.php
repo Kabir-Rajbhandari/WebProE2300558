@@ -1,7 +1,7 @@
 <?php
 // ---> User dashboard for learners to view courses, receipts, and reviews
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 requireRole('learner');
 
 $pageTitle = 'My Dashboard';
@@ -50,7 +50,7 @@ $my_reviews = $review_stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 $db->close();
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -87,12 +87,12 @@ include 'includes/header.php';
 
       <div class="sidebar-section-title">Actions</div>
       <div class="nav-item">
-        <a href="courses.php" class="nav-link">
+        <a href="<?= APP_URL ?>/pages/courses.php" class="nav-link">
           Browse Courses
         </a>
       </div>
       <div class="nav-item">
-        <a href="php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
+        <a href="<?= APP_URL ?>/php/logout.php" class="nav-link" style="color:rgba(239,68,68,.8) !important;">
           Logout
         </a>
       </div>
@@ -114,7 +114,7 @@ include 'includes/header.php';
             <?= date('l, d F Y') ?> &mdash; Track your learning progress here.
           </p>
         </div>
-        <a href="courses.php" class="btn-primary-ems d-none d-md-flex">
+        <a href="<?= APP_URL ?>/pages/courses.php" class="btn-primary-ems d-none d-md-flex">
           Enrol in a Course
         </a>
       </div>
@@ -165,7 +165,7 @@ include 'includes/header.php';
         <?php if (empty($enrollments)): ?>
         <div class="text-center py-4">
           <p style="color:var(--text-muted);margin-bottom:16px;">No enrollments yet. Start exploring courses!</p>
-          <a href="courses.php" class="btn-primary-ems">Browse Courses</a>
+          <a href="<?= APP_URL ?>/pages/courses.php" class="btn-primary-ems">Browse Courses</a>
         </div>
         <?php else: ?>
         <div class="table-responsive-ems">
@@ -183,7 +183,7 @@ include 'includes/header.php';
               <?php foreach (array_slice($enrollments, 0, 5) as $enroll): ?>
               <tr>
                 <td>
-                  <a href="course-detail.php?id=<?= $enroll['courseID'] ?>" style="font-weight:600;color:var(--text);">
+                  <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $enroll['courseID'] ?>" style="font-weight:600;color:var(--text);">
                     <?= htmlspecialchars(substr($enroll['title'], 0, 40)) ?><?= strlen($enroll['title']) > 40 ? '...' : '' ?>
                   </a>
                 </td>
@@ -197,11 +197,11 @@ include 'includes/header.php';
                 <td>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <?php if ($enroll['paymentStatus'] === 'paid'): ?>
-                    <a href="receipt.php?enroll=<?= $enroll['enrollID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">
+                    <a href="<?= APP_URL ?>/pages/receipt.php?enroll=<?= $enroll['enrollID'] ?>" class="btn-outline-ems" style="padding:4px 10px;font-size:.78rem;">
                       Receipt
                     </a>
                     <?php if (!$enroll['has_reviewed']): ?>
-                    <a href="review.php?course=<?= $enroll['courseID'] ?>" class="btn-accent-ems" style="padding:4px 10px;font-size:.78rem;">
+                    <a href="<?= APP_URL ?>/pages/review.php?course=<?= $enroll['courseID'] ?>" class="btn-accent-ems" style="padding:4px 10px;font-size:.78rem;">
                       Review
                     </a>
                     <?php else: ?>
@@ -225,14 +225,14 @@ include 'includes/header.php';
     <section id="section-courses" style="display:none;">
       <div class="d-flex align-items-center justify-content-between mb-4" data-aos="fade-down">
         <h2 style="font-size:1.4rem;margin:0;">My Enrolled Courses</h2>
-        <a href="courses.php" class="btn-primary-ems">Browse More</a>
+        <a href="<?= APP_URL ?>/pages/courses.php" class="btn-primary-ems">Browse More</a>
       </div>
 
       <?php if (empty($enrollments)): ?>
       <div class="text-center py-5" style="background:white;border-radius:var(--radius);border:1px solid var(--border);">
         <h4 style="margin-bottom:8px;">No enrollments yet</h4>
         <p style="color:var(--text-muted);margin-bottom:20px;">Start your learning journey by enrolling in a course.</p>
-        <a href="courses.php" class="btn-primary-ems">Browse Courses</a>
+        <a href="<?= APP_URL ?>/pages/courses.php" class="btn-primary-ems">Browse Courses</a>
       </div>
       <?php else: ?>
       <div class="row">
@@ -240,7 +240,7 @@ include 'includes/header.php';
         <div class="col-md-6 col-xl-4 mb-4" data-aos="fade-up" data-aos-delay="<?= $i * 60 ?>">
           <div class="card-ems" style="height:100%;display:flex;flex-direction:column;">
             <div style="<?php if (!empty($enroll['image_path'])): ?>
-                        background:linear-gradient(135deg,rgba(99,102,241,0.4),rgba(168,85,247,0.4)),url('<?= htmlspecialchars($enroll['image_path']) ?>');
+                        background:linear-gradient(135deg,rgba(99,102,241,0.4),rgba(168,85,247,0.4)),url('<?= APP_URL . '/' . htmlspecialchars($enroll['image_path']) ?>');
                         background-size:cover;background-position:center;
                         <?php else: ?>
                         background:linear-gradient(135deg,var(--primary-light),#ede9fe);
@@ -261,7 +261,7 @@ include 'includes/header.php';
             </div>
             <div style="padding:20px;flex:1;display:flex;flex-direction:column;">
               <h5 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">
-                <a href="course-detail.php?id=<?= $enroll['courseID'] ?>" style="color:var(--text);">
+                <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $enroll['courseID'] ?>" style="color:var(--text);">
                   <?= htmlspecialchars($enroll['title']) ?>
                 </a>
               </h5>
@@ -274,11 +274,11 @@ include 'includes/header.php';
               </div>
               <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
                 <?php if ($enroll['paymentStatus'] === 'paid'): ?>
-                <a href="receipt.php?enroll=<?= $enroll['enrollID'] ?>" class="btn-outline-ems" style="padding:6px 12px;font-size:.8rem;">
+                <a href="<?= APP_URL ?>/pages/receipt.php?enroll=<?= $enroll['enrollID'] ?>" class="btn-outline-ems" style="padding:6px 12px;font-size:.8rem;">
                   <i class="fas fa-receipt"></i> Receipt
                 </a>
                 <?php if (!$enroll['has_reviewed']): ?>
-                <a href="review.php?course=<?= $enroll['courseID'] ?>" class="btn-accent-ems" style="padding:6px 12px;font-size:.8rem;">
+                <a href="<?= APP_URL ?>/pages/review.php?course=<?= $enroll['courseID'] ?>" class="btn-accent-ems" style="padding:6px 12px;font-size:.8rem;">
                   <i class="fas fa-star"></i> Review
                 </a>
                 <?php else: ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 $code = (int)($_GET['code'] ?? 404);
 $validCodes = [400, 403, 404, 500];
@@ -17,7 +17,7 @@ $codeMap = [
 
 $info = $codeMap[$code];
 $pageTitle = $code . ' ' . $info['title'];
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <main>
@@ -29,13 +29,13 @@ include 'includes/header.php';
       <?= $info['msg'] ?>
     </p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-      <a href="index.php" class="btn-primary-ems" style="padding:12px 28px;font-size:1rem;">
+      <a href="<?= APP_URL ?>/pages/index.php" class="btn-primary-ems" style="padding:12px 28px;font-size:1rem;">
         <i class="fas fa-home"></i> Go Home
       </a>
       <a href="javascript:history.back()" class="btn-outline-ems" style="padding:12px 28px;font-size:1rem;">
         <i class="fas fa-arrow-left"></i> Go Back
       </a>
-      <a href="contact.php" class="btn-accent-ems" style="padding:12px 28px;font-size:1rem;">
+      <a href="<?= APP_URL ?>/pages/contact.php" class="btn-accent-ems" style="padding:12px 28px;font-size:1rem;">
         <i class="fas fa-envelope"></i> Contact Support
       </a>
     </div>
@@ -64,4 +64,4 @@ include 'includes/header.php';
 </div>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

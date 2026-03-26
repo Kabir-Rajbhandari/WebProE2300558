@@ -8,7 +8,7 @@
 
       <!-- Brand & Description -->
       <div class="col-lg-4 col-md-6 mb-4">
-        <a href="<?= APP_URL ?>/index.php" class="footer-brand-link" style="display:inline-block;margin-bottom:12px;">
+        <a href="<?= APP_URL ?>/pages/index.php" class="footer-brand-link" style="display:inline-block;margin-bottom:12px;">
           <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
                style="height:90px;width:auto;object-fit:contain;">
         </a>
@@ -28,11 +28,11 @@
       <div class="col-lg-2 col-md-6 mb-4">
         <h6>Platform</h6>
         <ul>
-          <li><a href="<?= APP_URL ?>/index.php">Home</a></li>
-          <li><a href="<?= APP_URL ?>/courses.php">Browse Courses</a></li>
-          <li><a href="<?= APP_URL ?>/about.php">About Us</a></li>
-          <li><a href="<?= APP_URL ?>/contact.php">Contact</a></li>
-          <li><a href="<?= APP_URL ?>/faq.php">FAQ</a></li>
+          <li><a href="<?= APP_URL ?>/pages/index.php">Home</a></li>
+          <li><a href="<?= APP_URL ?>/pages/courses.php">Browse Courses</a></li>
+          <li><a href="<?= APP_URL ?>/pages/about.php">About Us</a></li>
+          <li><a href="<?= APP_URL ?>/pages/contact.php">Contact</a></li>
+          <li><a href="<?= APP_URL ?>/pages/faq.php">FAQ</a></li>
         </ul>
       </div>
 
@@ -40,10 +40,10 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <h6>For Users</h6>
         <ul>
-          <li><a href="<?= APP_URL ?>/signup.php">Learner Registration</a></li>
-          <li><a href="<?= APP_URL ?>/signup.php?type=provider">Provider Registration</a></li>
-          <li><a href="<?= APP_URL ?>/login.php">Login</a></li>
-          <li><a href="<?= APP_URL ?>/learner-dashboard.php">My Dashboard</a></li>
+          <li><a href="<?= APP_URL ?>/pages/signup.php">Learner Registration</a></li>
+          <li><a href="<?= APP_URL ?>/pages/signup.php?type=provider">Provider Registration</a></li>
+          <li><a href="<?= APP_URL ?>/pages/login.php">Login</a></li>
+          <li><a href="<?= APP_URL ?>/pages/learner-dashboard.php">My Dashboard</a></li>
         </ul>
       </div>
 

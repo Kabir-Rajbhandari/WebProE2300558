@@ -1,7 +1,7 @@
 <?php
 // ---> Main landing page displaying featured courses, providers, and platform statistics
 
-require_once 'php/config.php';
+require_once '../php/config.php';
 
 $pageTitle = 'Home';
 $activeNav = 'home';
@@ -48,7 +48,7 @@ $statsQuery = $db->query("SELECT
 $stats = $statsQuery->fetch_assoc();
 $db->close();
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Hero Section-->
@@ -71,10 +71,10 @@ include 'includes/header.php';
             from Malaysia's trusted training providers. Learn at your own pace.
           </p>
           <div class="d-flex flex-wrap" style="gap:12px;">
-            <a href="courses.php" class="btn-primary-ems" style="padding:13px 28px;font-size:1rem;">
+            <a href="<?= APP_URL ?>/pages/courses.php" class="btn-primary-ems" style="padding:13px 28px;font-size:1rem;">
               <i class="fas fa-search"></i> Browse Courses
             </a>
-            <a href="signup.php" class="btn-outline-ems" style="padding:13px 28px;font-size:1rem;">
+            <a href="<?= APP_URL ?>/pages/signup.php" class="btn-outline-ems" style="padding:13px 28px;font-size:1rem;">
               <i class="fas fa-user-plus"></i> Get Started Free
             </a>
           </div>
@@ -212,7 +212,7 @@ include 'includes/header.php';
           <article class="card-course">
             <div class="course-thumb">
               <?php if (!empty($course['image_path'])): ?>
-              <img src="<?= htmlspecialchars($course['image_path']) ?>" alt="<?= htmlspecialchars($course['title']) ?>" 
+              <img src="<?= APP_URL . '/' . htmlspecialchars($course['image_path']) ?>" alt="<?= htmlspecialchars($course['title']) ?>" 
                    style="width:100%;height:100%;object-fit:cover;position:absolute;z-index:0;" />
               <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,0.3),rgba(168,85,247,0.3));z-index:1;"></div>
               <?php else: ?>
@@ -230,7 +230,7 @@ include 'includes/header.php';
                 <?= htmlspecialchars($course['org_name']) ?>
               </div>
               <h3 class="course-title">
-                <a href="course-detail.php?id=<?= $course['courseID'] ?>" style="color:var(--text);">
+                <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $course['courseID'] ?>" style="color:var(--text);">
                   <?= htmlspecialchars($course['title']) ?>
                 </a>
               </h3>
@@ -258,7 +258,7 @@ include 'includes/header.php';
                   <div style="font-weight:800;color:var(--primary);font-size:1rem;">
                     <?= $course['fee'] > 0 ? 'RM '.number_format($course['fee'], 2) : '<span style="color:var(--success);">Free</span>' ?>
                   </div>
-                  <a href="course-detail.php?id=<?= $course['courseID'] ?>"
+                  <a href="<?= APP_URL ?>/pages/course-detail.php?id=<?= $course['courseID'] ?>"
                      class="btn-primary-ems mt-2" style="padding:6px 14px;font-size:.8rem;">
                     View <i class="fas fa-arrow-right"></i>
                   </a>
@@ -272,7 +272,7 @@ include 'includes/header.php';
     </div>
 
     <div class="text-center mt-3" data-aos="fade-up">
-      <a href="courses.php" class="btn-outline-ems" style="padding:12px 32px;font-size:1rem;">
+      <a href="<?= APP_URL ?>/pages/courses.php" class="btn-outline-ems" style="padding:12px 32px;font-size:1rem;">
         <i class="fas fa-th-large me-2" style="margin-right:6px;"></i>View All Courses
       </a>
     </div>
@@ -358,14 +358,14 @@ include 'includes/header.php';
       Join thousands of professionals upgrading their skills through EduSkill Marketplace.
     </p>
     <div class="d-flex justify-content-center flex-wrap" style="gap:14px;">
-      <a href="signup.php" style="background:white;color:var(--primary);padding:13px 32px;
+      <a href="<?= APP_URL ?>/pages/signup.php" style="background:white;color:var(--primary);padding:13px 32px;
          border-radius:8px;font-weight:700;font-size:1rem;transition:all .3s ease;
          display:inline-flex;align-items:center;gap:8px;"
          onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
          onmouseout="this.style.transform='none';this.style.boxShadow='none'">
         <i class="fas fa-user-plus"></i> Join as Learner
       </a>
-      <a href="signup.php?type=provider" style="background:rgba(255,255,255,0.15);color:white;
+      <a href="<?= APP_URL ?>/pages/signup.php?type=provider" style="background:rgba(255,255,255,0.15);color:white;
          padding:13px 32px;border-radius:8px;font-weight:700;font-size:1rem;
          border:2px solid rgba(255,255,255,0.5);transition:all .3s ease;
          display:inline-flex;align-items:center;gap:8px;"
@@ -377,4 +377,4 @@ include 'includes/header.php';
   </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

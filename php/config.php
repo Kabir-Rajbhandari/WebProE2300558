@@ -47,7 +47,7 @@ function sanitize(string $data): string {
 // Check if user is logged in
 function requireLogin(): void {
     if (empty($_SESSION['user_id'])) {
-        header('Location: ' . APP_URL . '/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+        header('Location: ' . APP_URL . '/pages/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
         exit;
     }
 }
@@ -56,7 +56,7 @@ function requireLogin(): void {
 function requireRole(string $role): void {
     requireLogin();
     if ($_SESSION['user_role'] !== $role) {
-        header('Location: ' . APP_URL . '/error.php?code=403');
+        header('Location: ' . APP_URL . '/pages/error.php?code=403');
         exit;
     }
 }
