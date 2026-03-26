@@ -62,8 +62,9 @@ include '../includes/header.php';
       <div class="receipt-header">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;">
           <div>
-            <div style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:4px;">
-              <i class="fas fa-graduation-cap me-2" style="margin-right:8px;opacity:.85;"></i>EduSkill Marketplace
+            <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:4px;">
+              <i class="fas fa-graduation-cap me-2" style="margin-right:8px;opacity:.85;"></i>
+              EduSkill Marketplace System (EMS)
             </div>
             <div style="opacity:.75;font-size:.85rem;">Ministry of Human Resources, Malaysia</div>
           </div>

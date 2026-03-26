@@ -57,7 +57,8 @@ include '../includes/header.php';
       <div class="col-lg-6" data-aos="fade-left">
         <div style="background:linear-gradient(135deg,var(--primary-light),#ede9fe);
                     border-radius:20px;padding:50px;text-align:center;">
-          <i class="fas fa-graduation-cap" style="font-size:5rem;color:var(--primary);margin-bottom:20px;display:block;"></i>
+          <img src="../assets/images/edu.png" alt="EduSkill Logo" 
+     style="width:120px;margin-bottom:20px;" />
           <div class="row">
             <?php
             $aStats = [
