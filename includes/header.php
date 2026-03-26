@@ -45,7 +45,7 @@ $userName   = getSessionUserName();
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center" href="<?= APP_URL ?>/pages/index.php">
   <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
-       style="height:75px; width:auto; object-fit:contain;">
+       style="height:55px; width:auto; object-fit:contain;">
 </a>
 
     <!-- Mobile Toggle -->
