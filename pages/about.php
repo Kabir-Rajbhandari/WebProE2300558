@@ -69,18 +69,11 @@ include '../includes/header.php';
       </div>
       <div class="col-lg-6" data-aos="fade-left">
         <div style="background:linear-gradient(135deg,var(--primary-light),#ede9fe);
-                    border-radius:20px;padding:50px;text-align:center;">
-<<<<<<< HEAD
-        
+                    border-radius:20px;padding:50px;text-align:center;">        
 <img src="../assets/images/edu.png" alt="EduSkill Logo" 
      style="width:170px;display:block;margin:0 auto;" />
 
           <div class="row" style="margin-top:15px;">
-=======
-          <img src="../assets/images/edu.png" alt="EduSkill Logo" 
-     style="width:120px;margin-bottom:20px;" />
-          <div class="row">
->>>>>>> backend
             <?php
             $aStats = [
               ['num'=>number_format($stats['total_courses']),'label'=>'Courses Listed'],
