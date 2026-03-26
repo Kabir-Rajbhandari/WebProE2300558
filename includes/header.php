@@ -40,15 +40,12 @@ $userName   = getSessionUserName();
 <!-- Toast Container -->
 <div class="toast-container-ems"></div>
 
-<!-- ============================================================
-     NAVIGATION BAR
-     ============================================================ -->
 <nav class="navbar navbar-ems navbar-expand-lg">
   <div class="container">
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center" href="<?= APP_URL ?>/pages/index.php">
   <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
-       style="height:80px; width:auto; object-fit:contain;">
+       style="height:75px; width:auto; object-fit:contain;">
 </a>
 
     <!-- Mobile Toggle -->

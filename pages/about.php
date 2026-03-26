@@ -3,6 +3,19 @@
 require_once '../php/config.php';
 $pageTitle = 'About Us';
 $activeNav = 'about';
+
+// Fetch platform statistics from database
+$db = getDbConnection();
+$statsQuery = $db->query("SELECT
+    (SELECT COUNT(*) FROM courses) AS total_courses,
+    (SELECT COUNT(*) FROM providers WHERE status='approved') AS total_providers,
+    (SELECT COUNT(*) FROM users WHERE role='learner') AS total_learners,
+    ROUND(COALESCE(AVG(r.rating), 4.5), 1) AS avg_rating
+    FROM reviews r
+");
+$stats = $statsQuery->fetch_assoc();
+$db->close();
+
 include '../includes/header.php';
 ?>
 
@@ -57,14 +70,17 @@ include '../includes/header.php';
       <div class="col-lg-6" data-aos="fade-left">
         <div style="background:linear-gradient(135deg,var(--primary-light),#ede9fe);
                     border-radius:20px;padding:50px;text-align:center;">
-          <i class="fas fa-graduation-cap" style="font-size:5rem;color:var(--primary);margin-bottom:20px;display:block;"></i>
-          <div class="row">
+        
+<img src="../assets/images/edu.png" alt="EduSkill Logo" 
+     style="width:170px;display:block;margin:0 auto;" />
+
+          <div class="row" style="margin-top:15px;">
             <?php
             $aStats = [
-              ['num'=>'500+','label'=>'Courses Listed'],
-              ['num'=>'50+','label'=>'Verified Providers'],
-              ['num'=>'10,000+','label'=>'Learners Enrolled'],
-              ['num'=>'4.5/5','label'=>'Avg Satisfaction'],
+              ['num'=>number_format($stats['total_courses']),'label'=>'Courses Listed'],
+              ['num'=>number_format($stats['total_providers']),'label'=>'Verified Providers'],
+              ['num'=>number_format($stats['total_learners']),'label'=>'Learners Enrolled'],
+              ['num'=>$stats['avg_rating'].'/5','label'=>'Avg Satisfaction'],
             ];
             foreach ($aStats as $as): ?>
             <div class="col-6 mb-3">

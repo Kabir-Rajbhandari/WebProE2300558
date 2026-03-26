@@ -105,7 +105,8 @@ include '../includes/header.php';
                       padding:32px;width:100%;max-width:380px;position:relative;margin:0 auto;">
             <div style="background:linear-gradient(135deg,#EFF6FF,#F5F3FF);border-radius:12px;
                         padding:28px;text-align:center;margin-bottom:20px;">
-              <i class="fas fa-graduation-cap" style="font-size:4rem;color:var(--primary);"></i>
+               <img src="../assets/images/edu.png" alt="EduSkill Logo" 
+     style="width:160px;display:block;margin:0 auto;" />
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;">
               <?php foreach(array_slice($courses, 0, 3) as $c): ?>

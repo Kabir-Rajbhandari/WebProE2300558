@@ -102,8 +102,8 @@ include '../includes/header.php';
           <!-- Left Panel -->
           <div class="col-md-5 d-none d-md-flex flex-column justify-content-center align-items-center"
                style="background:linear-gradient(160deg,var(--primary) 0%,var(--accent) 100%);padding:50px 36px;color:white;">
-            <i class="fas fa-graduation-cap" style="font-size:3.5rem;margin-bottom:20px;opacity:.9;"></i>
-            <h3 style="font-weight:800;margin-bottom:12px;text-align:center;">Welcome Back</h3>
+            <img src="../assets/images/edu.png" alt="EduSkill Logo" style="width:110px;filter:brightness(0) invert(1);" />
+            <h3 style="font-weight:800;margin-bottom:12px;text-align:center;margin-top:20px;">Welcome Back</h3>
             <p style="font-size:.88rem;opacity:.8;text-align:center;margin-bottom:28px;">
               Access your EduSkill dashboard and continue your learning journey.
             </p>

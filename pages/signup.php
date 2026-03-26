@@ -121,7 +121,7 @@ include '../includes/header.php';
       <div class="col-lg-8 col-md-10">
         <div class="auth-card" style="max-width:100%;">
           <h2 class="auth-title" style="text-align:center;">Create Account</h2>
-          <p class="auth-subtitle">Join EduSkill Marketplace — free for learners, fast approval for providers.</p>
+          <p class="auth-subtitle" style="text-align:center;">Join EduSkill Marketplace - free for learners, fast approval for providers.</p>
 
           <!-- Role Toggle -->
           <div style="display:flex;background:var(--card-bg);border-radius:10px;padding:4px;

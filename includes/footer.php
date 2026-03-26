@@ -10,7 +10,7 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <a href="<?= APP_URL ?>/pages/index.php" class="footer-brand-link" style="display:inline-block;margin-bottom:12px;">
           <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
-               style="height:90px;width:auto;object-fit:contain;">
+               style="height:110px;width:auto;object-fit:contain; margin-bottom:-10px;" />
         </a>
         <p class="footer-desc">
           Malaysia's official Ministry of Human Resources platform connecting learners
