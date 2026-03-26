@@ -10,9 +10,13 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <a href="<?= APP_URL ?>/pages/index.php" class="footer-brand-link" style="display:inline-block;margin-bottom:12px;">
           <img src="<?= APP_URL ?>/assets/images/logo.png" alt="EduSkill Logo"
+<<<<<<< HEAD
                style="height:110px;width:auto;object-fit:contain; margin-bottom:-10px;" />
+=======
+               style="height:120px;width:auto;object-fit:contain;">
+>>>>>>> backend
         </a>
-        <p class="footer-desc">
+        <p class="footer-desc" style="margin-top: -15px;">
           Malaysia's official Ministry of Human Resources platform connecting learners
           with accredited training providers for professional upskilling.
         </p>
@@ -78,9 +82,7 @@
   </div>
 </footer>
 
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
